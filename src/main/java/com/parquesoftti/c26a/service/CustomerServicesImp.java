@@ -1,9 +1,7 @@
 package com.parquesoftti.c26a.service;
 
-
 import com.parquesoftti.c26a.model.Customer;
 import com.parquesoftti.c26a.repository.CustomerRepository;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,9 +17,9 @@ public class CustomerServicesImp implements CustomerService{
     @Override
     @Transactional(readOnly = true)
     public List<Customer> findAll() {
-
         return customerRepository.findAll();
     }
+
 
     @Override
     @Transactional(readOnly = true)
@@ -35,11 +33,13 @@ public class CustomerServicesImp implements CustomerService{
         return customerRepository.save(customer);
     }
 
+
     @Override
-    @Transactional(readOnly = false,propagation = Propagation.REQUIRED,rollbackFor = RuntimeException.class)
-    public Customer update(Long id, Customer customer) {
+
+        @Transactional(readOnly = false,propagation = Propagation.REQUIRED,rollbackFor = RuntimeException.class)
+        public Customer update(Long id, Customer customer) {
         Customer customersTmp = customerRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("customer not found"));
+        .orElseThrow(()->new RuntimeException("customer not found"));
         customersTmp.setCustomerName(customer.getCustomerName());
         customersTmp.setEmail(customer.getEmail());
         customersTmp.setPhoneNumber(customer.getPhoneNumber());
@@ -52,11 +52,13 @@ public class CustomerServicesImp implements CustomerService{
         customerRepository.deleteById(id);
     }
 
-    @Override
+     @Override
     @Transactional(readOnly = true)
-    public Customer findByName(String name) {
-        return customerRepository.findByCustomerName(name)
-                .orElseThrow(()->new RuntimeException("customer not found"));
+     public Customer findByName(String name) {
+     return customerRepository.findByCustomerName(name)
+    .orElseThrow(()->new RuntimeException("customer not found"));
     }
 }
+
+
 
