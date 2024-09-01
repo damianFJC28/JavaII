@@ -40,9 +40,9 @@ public class OrderServicesImp implements OrderService {
     public Order update(Long id, Order order) {
         Order ordersTmp = orderRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("order not found"));
-        ordersTmp.setOrderName(order.getOrderName());
-        ordersTmp.setEmail(order.getEmail());
-        ordersTmp.setPhoneNumber(order.getPhoneNumber());
+        ordersTmp.setOrderDate(order.getOrderDate());
+        ordersTmp.setQuantity(order.getQuantity());
+        //ordersTmp.setPhoneNumber(order.getPhoneNumber());
         return orderRepository.save(ordersTmp);
     }
 

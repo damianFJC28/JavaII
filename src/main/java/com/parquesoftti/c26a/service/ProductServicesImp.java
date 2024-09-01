@@ -43,8 +43,8 @@ public class ProductServicesImp implements ProductService{
         Product productsTmp = productRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("product not found"));
         productsTmp.setProductName(product.getProductName());
-        productsTmp.setEmail(product.getEmail());
-        productsTmp.setPhoneNumber(product.getPhoneNumber());
+        productsTmp.setPrice(product.getPrice());
+        //productsTmp.setPhoneNumber(product.getPhoneNumber());
         return productRepository.save(productsTmp);
     }
 
